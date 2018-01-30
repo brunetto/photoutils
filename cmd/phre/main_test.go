@@ -1,9 +1,10 @@
 package main
 
 import (
-	"testing"
-	"github.com/stretchr/testify/assert"
 	"sort"
+	"testing"
+
+	"github.com/stretchr/testify/assert"
 )
 
 func TestNewSet(t *testing.T) {
@@ -111,7 +112,7 @@ func TestFnDataSet_ToSlice_and_Sort(t *testing.T) {
 	sort.Sort(ss)
 
 	assert.Equal(t, 2, len(ss))
-	assert.EqualValues(t, &FnData{BaseName:"t1", Ext:StringSet{".e1": struct{}{}}}, ss[0])
-	assert.EqualValues(t, &FnData{BaseName:"t2", Ext:StringSet{".e2": struct{}{}}}, ss[1])
+	assert.EqualValues(t, &FnData{BaseName: "t1", Ext: StringSet{".e1": struct{}{}}}, ss[0])
+	assert.EqualValues(t, &FnData{BaseName: "t2", Ext: StringSet{".e2": struct{}{}}}, ss[1])
 
 }

@@ -2,16 +2,16 @@ package main
 
 import (
 	"fmt"
-	"github.com/brunetto/goutils/text"
-	"github.com/pkg/errors"
 	"log"
 	"os"
 	"path/filepath"
+	"sort"
 	"strconv"
 	"strings"
-	"sort"
-)
 
+	"github.com/brunetto/goutils/text"
+	"github.com/pkg/errors"
+)
 
 type FnData struct {
 	BaseName string
@@ -19,16 +19,18 @@ type FnData struct {
 }
 
 type FnDataSlice []*FnData
+
 func (a FnDataSlice) Len() int           { return len(a) }
 func (a FnDataSlice) Swap(i, j int)      { a[i], a[j] = a[j], a[i] }
 func (a FnDataSlice) Less(i, j int) bool { return a[i].BaseName < a[j].BaseName }
 
 type FnDataSet map[string]*FnData
+
 func NewFnDataSet() FnDataSet {
 	s := FnDataSet{}
 	return s
 }
-func (s FnDataSet) Add (bn, ext string) {
+func (s FnDataSet) Add(bn, ext string) {
 	if s.Contains(bn) {
 		s[bn].Ext.Add(ext)
 	} else {
@@ -36,16 +38,16 @@ func (s FnDataSet) Add (bn, ext string) {
 	}
 }
 
-func (s FnDataSet) Contains(str string ) bool {
+func (s FnDataSet) Contains(str string) bool {
 	_, exists := s[str]
 	return exists
 }
 
-func (s FnDataSet) Remove (str string ) {
-		delete(s, str)
+func (s FnDataSet) Remove(str string) {
+	delete(s, str)
 }
 
-func (s FnDataSet) ToSlice () FnDataSlice {
+func (s FnDataSet) ToSlice() FnDataSlice {
 	sl := FnDataSlice{}
 	for _, v := range s {
 		sl = append(sl, v)
@@ -53,32 +55,32 @@ func (s FnDataSet) ToSlice () FnDataSlice {
 	return sl
 }
 
-
 type StringSet map[string]struct{}
+
 func NewStringSet(strs ...string) StringSet {
 	s := StringSet{}
 	s.Add(strs...)
 	return s
 }
 
-func (s StringSet) Add (strs ...string ) {
+func (s StringSet) Add(strs ...string) {
 	for _, str := range strs {
 		s[str] = struct{}{}
 	}
 }
 
-func (s StringSet) Contains(str string ) bool {
+func (s StringSet) Contains(str string) bool {
 	_, exists := s[str]
 	return exists
 }
 
-func (s StringSet) Remove (strs ...string ) {
+func (s StringSet) Remove(strs ...string) {
 	for _, str := range strs {
 		delete(s, str)
 	}
 }
 
-func SplitOnExtension(fn string )(fbn string, ext string) {
+func SplitOnExtension(fn string) (fbn string, ext string) {
 	ext = filepath.Ext(fn)
 	fbn = strings.TrimSuffix(fn, ext)
 	return fbn, ext
@@ -106,7 +108,7 @@ func main() {
 	fnsMap := NewFnDataSet()
 	for _, fn := range fns {
 		fbn, ext := SplitOnExtension(fn)
-		if !extensions.Contains(ext){
+		if !extensions.Contains(ext) {
 			continue
 		}
 		fnsMap.Add(fbn, ext)
@@ -117,7 +119,7 @@ func main() {
 	sort.Sort(fnSlice)
 
 	// for each old base-name and extension, rename
-	padlenght := len(strconv.Itoa(len(fnSlice)))+1
+	padlenght := len(strconv.Itoa(len(fnSlice))) + 1
 	for i, fnd := range fnSlice {
 		for ext, _ := range fnd.Ext {
 			oldName := fnd.BaseName + ext
