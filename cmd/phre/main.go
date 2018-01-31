@@ -124,7 +124,7 @@ func main() {
 		for ext, _ := range fnd.Ext {
 			oldName := fnd.BaseName + ext
 			newName := cwd + "-" + text.LeftPad(strconv.Itoa(i), "0", padlenght) + ext
-			fmt.Printf("Renaming %v into %v\n", oldName, newName)
+			fmt.Printf("Renaming %v to %v\n", oldName, newName)
 			err = os.Rename(oldName, newName)
 			if err != nil {
 				log.Fatal(errors.Wrap(err, "can't rename file"))
