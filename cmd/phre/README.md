@@ -3,7 +3,9 @@
 Photo Renamer
 
 
-Rename your photos in a smart way
+Rename your photos in a smart way, i.e. keeping the same name for the same photo
+in different format (e.g. jpg and raw of the same photo, like when you
+shoot with RAW+JPG enabled)
 
 ```
 $ tree ../2018-01-31-Venice-Carnival/
