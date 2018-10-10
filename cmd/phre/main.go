@@ -124,6 +124,9 @@ func main() {
 		for ext, _ := range fnd.Ext {
 			oldName := fnd.BaseName + ext
 			newName := cwd + "-" + text.LeftPad(strconv.Itoa(i), "0", padlenght) + ext
+			if oldName == newName {
+				continue
+			}
 			fmt.Printf("Renaming %v to %v\n", oldName, newName)
 			err = os.Rename(oldName, newName)
 			if err != nil {

@@ -1,11 +1,7 @@
 #!/usr/bin/env bash
 
-goimports -w *.go
-rm -rf vendor
-govendor init
-#sed -i '' '/test/d' vendor/vendor.json && \
-govendor add +external
-
+cd cmd/phre 
+go mod tidy
 go install
 
 GOOS=darwin GOARCH=amd64 go build -o phre_darwin
