@@ -89,7 +89,7 @@ func SplitOnExtension(fn string) (fbn string, ext string) {
 func main() {
 	// file type extensions to consider
 	extensions := NewStringSet(".cr2", ".CR2", ".jpeg", ".jpg", ".JPEG", ".JPG", ".tiff", ".TIFF",
-		".png", ".PNG", ".NEF", ".nef", ".dng", ".DNG", ".MOV", ".mov", ".mpeg", ".MPEG", ".mpeg4", ".MPEG4", ".mp4", ".MP4")
+		".png", ".PNG", ".NEF", ".nef", ".dng", ".DNG", ".MOV", ".mov", ".mpeg", ".MPEG", ".mpeg4", ".MPEG4", ".mp4", ".MP4", ".xmp", ".XMP")
 
 	// get current directory name to be used as new base-name
 	cwd, err := os.Getwd()
