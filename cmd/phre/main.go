@@ -123,7 +123,7 @@ func main() {
 	for i, fnd := range fnSlice {
 		for ext, _ := range fnd.Ext {
 			oldName := fnd.BaseName + ext
-			newName := cwd + "-" + text.LeftPad(strconv.Itoa(i), "0", padlenght) + ext
+			newName := cwd + "-" + text.LeftPad(strconv.Itoa(i), "0", padlenght) + "_" + fnd.BaseName + ext
 			if oldName == newName {
 				continue
 			}
