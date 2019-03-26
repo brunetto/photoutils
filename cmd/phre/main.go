@@ -122,11 +122,16 @@ func main() {
 	padlenght := len(strconv.Itoa(len(fnSlice))) + 1
 	for i, fnd := range fnSlice {
 		for ext, _ := range fnd.Ext {
-			oldName := fnd.BaseName + ext
-			newName := cwd + "-" + text.LeftPad(strconv.Itoa(i), "0", padlenght) + "_" + fnd.BaseName + ext
-			if oldName == newName {
+			// quick fix, assume that if the current folder name is part of the filename,
+			// the filename is ok and we can skip it
+			if strings.Contains(fnd.BaseName, cwd) {
 				continue
 			}
+			oldName := fnd.BaseName + ext
+			newName := cwd + "-" + text.LeftPad(strconv.Itoa(i), "0", padlenght) + "_" + fnd.BaseName + ext
+			// if strings.Contains(newName, fnd.BaseName) {
+			// 	continue
+			// }
 			fmt.Printf("Renaming %v to %v\n", oldName, newName)
 			err = os.Rename(oldName, newName)
 			if err != nil {
