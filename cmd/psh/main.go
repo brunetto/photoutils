@@ -28,7 +28,7 @@ func main() {
 	dieIf(err)
 
 	for i, fn := range files {
-		newName := fmt.Sprintf("./sherwood/Ph.biemmezeta%03d.jpg", i)
+		newName := fmt.Sprintf("./sherwood/Ph.biemmezeta-%03d.jpg", i)
 
 		original, err := bimg.Read(fn)
 		dieIf(err)
